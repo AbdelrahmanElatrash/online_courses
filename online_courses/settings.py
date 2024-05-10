@@ -28,7 +28,7 @@ class Dev(Configuration):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(True)
 
-    ALLOWED_HOSTS =values.ListValue([])
+    ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0","127.0.0.1"])
 
 
     # Application definition
@@ -51,6 +51,14 @@ class Dev(Configuration):
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ]
+    
+    PASSWORD_HASHERS =[
+            'django.contrib.auth.hashers.Argon2PasswordHasher',
+            'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+            'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+            'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+         ]
+
 
     ROOT_URLCONF = values.Value('online_courses.urls')
 
