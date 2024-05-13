@@ -30,7 +30,7 @@ class Dev(Configuration):
 
     ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0","127.0.0.1"])
 
-
+    AUTH_USER_MODEL = 'user_auth.User'
     # Application definition
 
     INSTALLED_APPS = [
@@ -40,6 +40,7 @@ class Dev(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'user_auth',
     ]
 
     MIDDLEWARE = [
