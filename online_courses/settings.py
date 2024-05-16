@@ -32,6 +32,9 @@ class Dev(Configuration):
 
     AUTH_USER_MODEL = 'user_auth.User'
     # Application definition
+    
+    TAILWIND_APP_NAME = 'theme'
+    TAILWIND_DEV_MODE=values.BooleanValue(True)
 
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -41,6 +44,10 @@ class Dev(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'user_auth',
+        'tailwind',
+        'theme',
+        'django_browser_reload',
+        
     ]
 
     MIDDLEWARE = [
@@ -51,6 +58,7 @@ class Dev(Configuration):
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        "django_browser_reload.middleware.BrowserReloadMiddleware",
     ]
     
     PASSWORD_HASHERS =[
@@ -61,12 +69,15 @@ class Dev(Configuration):
          ]
 
 
+    INTERNAL_IPS = [
+                '127.0.0.1',
+    ]
     ROOT_URLCONF = values.Value('online_courses.urls')
 
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [],
+            'DIRS': ['templates'],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [
