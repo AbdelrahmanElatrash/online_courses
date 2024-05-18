@@ -146,3 +146,4 @@ class Dev(Configuration):
 class Prod(Dev):
     DEBUG = False
     SECRET_KEY = values.SecretValue()
+    TAILWIND_DEV_MODE = False
