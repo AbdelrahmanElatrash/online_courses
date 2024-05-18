@@ -2,12 +2,15 @@
 
 <header class="flex justify-between items-center p-8 bg-gray-400 text-red-800">
     <div class="flex-grow text-center">
-        <h1>for logo</h1>
+        <a href="#"><h1>for logo</h1></a>
     </div>
     <nav class="flex-grow text-right text-red-800 no-underline">
-        <a class="ml-6" href="#">Home</a>
-        <a class="ml-6" href="#">About</a>
-        <a class="ml-6" href="#">Services</a>
-        <a class="ml-6" href="#">Contact</a>
+        {% if request.user.is_active %}
+            <a class="ml-6" href="#">profile</a>
+            <a class="ml-6" href="{% url 'logout' %}">log out</a>
+        {% else %}
+            <a class="ml-6" href="{% url 'login' %}">log in</a>
+        {% endif %}
+        
     </nav>
 </header>

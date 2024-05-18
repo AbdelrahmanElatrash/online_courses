@@ -16,6 +16,10 @@ be sure you have node version 14 or higer
 
 ### make migrations
 >>$ python manage.py migrate
+
+### create super user 
+>>$ python manage.py createsuperuser
+
 ### start tailwind server
 >>$ python manage.py tailwind start
 
