@@ -9,20 +9,8 @@
 
 
 {% block content %}
-    
-    <div>
-        <form action="{% url 'login' %}" method="post">
-            {% csrf_token %}
-            {{form}}
-            
-            <button type="submit">log in</button>
-            
-        </form>
-    </div>
-{% endblock content %}
-   
 
-<!-- <div>
+    <div>
         {% if next %}
             {% if user.is_authenticated %}
                 <p>Your account doesn't have access to this page. 
@@ -32,5 +20,19 @@
             {% endif %}
         {% endif %}
     </div>
- -->
-<!-- <input type="hidden" name="next" value="{{ next }}">  -->
+
+
+
+    <div>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {{form}}
+            
+            <button type="submit">log in</button>
+            <input type="hidden" name="next" value="{{ next }}">
+            
+        </form>
+    </div>
+{% endblock content %}
+   
+

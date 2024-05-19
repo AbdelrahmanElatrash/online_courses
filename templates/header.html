@@ -2,15 +2,28 @@
 
 <header class="flex justify-between items-center p-8 bg-gray-400 text-red-800">
     <div class="flex-grow text-center">
-        <a href="#"><h1>for logo</h1></a>
+        <a href="{% url 'home' %}"><h1>for logo</h1></a>
     </div>
     <nav class="flex-grow text-right text-red-800 no-underline">
         {% if request.user.is_active %}
             <a class="ml-6" href="#">profile</a>
-            <a class="ml-6" href="{% url 'logout' %}">log out</a>
+            <a class="ml-6" href="{% url 'logout' %}?next=/">log out</a>
         {% else %}
-            <a class="ml-6" href="{% url 'login' %}">log in</a>
+            <a class="ml-6" href="{% url 'login' %}" id="log-in">log in</a>
         {% endif %}
         
     </nav>
+
+    <script>
+        document.getElementById('log-in').addEventListener('click', function(event){
+            event.preventDefault() ;
+            var currentUrl = window.location.href ; // Get the current URL
+            var logInUrl = this.href ; // Get the login URL from the href attribute
+            var redirectUrl = logInUrl + '?next=' + encodeURIComponent(currentUrl) ; // Redirect to the new login URL
+           // encodeURIComponent is used to ensure the URL is properly encoded. 
+           window.location.href = redirectUrl ; // Redirect to the new login URL
+           console.log(currentUrl)
+           console.log(redirectUrl)
+        })
+    </script>
 </header>
