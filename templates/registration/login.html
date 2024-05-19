@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static tailwind_tags %}
+
+<title> 
+{% block title %}
+    log in 
+{% endblock title %}
+    </title>
+
+
+{% block content %}
+
+    <div>
+        {% if next %}
+            {% if user.is_authenticated %}
+                <p>Your account doesn't have access to this page. 
+                    Toproceed,please login with an account that has access.</p>
+            {% else %}
+                <p>Please login to see this page.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+
+
+
+    <div>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {{form}}
+            
+            <button type="submit">log in</button>
+            <input type="hidden" name="next" value="{{ next }}">
+            
+        </form>
+    </div>
+{% endblock content %}
+   
+
